@@ -65,9 +65,8 @@ function getUsernameFromCookies() {
     const mappedData = mapFormData();
 
     try {
-      const response = await axios.post('http://127.0.0.1:5000/predict', mappedData);
+      const response = await axios.post('http://127.0.0.1:5000/requestLoan', mappedData);
       // Print the response in the console
-      
       console.log('Response:', response.data);
 
       try {
@@ -79,8 +78,8 @@ function getUsernameFromCookies() {
   
         // Check password in the response data
 
-          document.cookie = `isLoanExist=${user.isLoanExist}; path=/`;
-          // Optionally, redirect or update the UI}
+        document.cookie = `isLoanExist=${user.isLoanExist}; path=/`;
+        // Optionally, redirect or update the UI}
       } catch (error) {
         console.log(' Something Went Wrong ');
       }

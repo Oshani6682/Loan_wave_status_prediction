@@ -36,8 +36,8 @@ const UserDetails = () => {
   return (
     <div>
       <h2>User Details: {userData.username}</h2>
-      <p>Loan Amount: {userData.loanAmount}</p>
-      <p>Loan Status: {userData.LoanStatus}</p>
+      <p>Loan Amount: {userData.LoanApplications[0].LoanAmount}</p>
+      <p>Loan Status: {userData.LoanApplications[0].Loan_Status}</p>
     </div>
   );
 };

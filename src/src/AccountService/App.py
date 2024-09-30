@@ -16,15 +16,15 @@ db = client["loan_db"]
 users_collection = db["users"]
 
 # Replace
-GMAIL_USER = "oshani071@gmail.com"
-GMAIL_PASSWORD = "aranogm@g77..)"
+GMAIL_USER = "your-email@gmail.com"
+GMAIL_PASSWORD = "your-app-specific-password"
 
 # POST Method to create New user with loan information,user type, and email
 @app.route('/createuser', methods=['POST'])
 def create_user():
     data = request.json
     print(data)
-    required_fields = {"username", "password", "isLoanExist", "loanAmount", "LoanStatus", "Usertype", "email"}
+    required_fields = {"username", "password", "isLoanExist", "Usertype", "email"}
     
     # Check if all required fields are present
     if not required_fields.issubset(data):
@@ -33,9 +33,7 @@ def create_user():
     user_data = {
         "username": data['username'],
         "password": data['password'],
-        "isLoanExist": data['isLoanExist'],
-        "loanAmount": data['loanAmount'],
-        "LoanStatus": data['LoanStatus'],
+        "isLoanExist": False,
         "Usertype": data['Usertype'],
         "email": data['email'],  # Include email field
         "_id": ObjectId()  # Generate a new ObjectId

@@ -35,6 +35,20 @@ function CreateUserForm() {
         }
       });
       alert('User created successfully');
+
+      // Reset form data after successful creation
+      setFormData({
+        username: '',
+        email: '',
+        password: '',
+        isLoanExist: false,
+        loanAmount: 0,
+        LoanStatus: 'None',
+        Usertype: ''
+      });
+
+      // Redirect to login page
+      navigate('/login');
       // Optionally, reset form data or redirect
     } catch (error) {
       console.error('Error creating user:', error);
@@ -89,11 +103,21 @@ function CreateUserForm() {
           value={formData.Usertype}
           onChange={handleChange}
         >
-          <option value="">Select User Type</option>
+           <option value="">Select User Type</option>
+          {/* Disable Admin option with red styling */}
+          <option value="Admin" disabled style={{ color: 'red' }}>
+            Admin (Disabled)
+          </option>
+          <option value="Customer" style={{ fontWeight: 'bold' }}>
+            Customer
+          </option>
+        </Form.Control>
+      </Form.Group>
+          {/* <option value="">Select User Type</option>
           <option value="Admin">Admin</option>
           <option value="Customer">Customer</option>
         </Form.Control>
-      </Form.Group>
+      </Form.Group> */}
 
 <br/>
       <ButtonGroup aria-label="Basic example">

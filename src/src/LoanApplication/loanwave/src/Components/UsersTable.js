@@ -34,8 +34,8 @@ function UsersTable() {
   };
 
   // Handle row click to navigate to the user details page
-  const handleRowClick = (username) => {
-    history(`/user/${username}`);
+  const handleRowClick = (username, loan) => {
+    history(`/user/${username}/${JSON.stringify(loan)}`);
   };
 
   return (
@@ -49,19 +49,30 @@ function UsersTable() {
         </tr>
       </thead>
       <tbody>
-        {users.map((user, index) => (
-          <tr
-            key={user._id}
-            onClick={() => handleRowClick(user.username)}
-            style={{ cursor: 'pointer' }}
-          >
-            <td>{index + 1}</td>
-            <td>{user.username}</td>
-            <td>{user.loanAmount}</td>
-            <td style={{ color: getLoanStatusColor(user.LoanStatus) }}>
-              {user.LoanStatus}
-            </td>
-          </tr>
+        {users.map((user, userIndex) => (
+          // Only render the user if LoanApplications exist and are not empty
+          user.isLoanExist ? (
+            <React.Fragment key={user._id}>
+              {/* Create a row for the user */}
+              <tr
+                key={user._id}
+                style={{ cursor: 'pointer' }}
+              >
+                <td rowSpan={user.LoanApplications.length + 1}>{userIndex + 1}</td>
+                <td rowSpan={user.LoanApplications.length + 1}>{user.username}</td>
+              </tr>
+
+              {/* Create rows for each loan application */}
+              {user.LoanApplications.map((loan, loanIndex) => (
+                <tr key={loanIndex} onClick={() => handleRowClick(user.username, loan)}>
+                  <td>{loan.LoanAmount}</td>
+                  <td style={{ color: getLoanStatusColor(loan.Loan_Status) }}>
+                    {loan.Loan_Status}
+                  </td>
+                </tr>
+              ))}
+            </React.Fragment>
+          ) : null
         ))}
       </tbody>
     </Table>

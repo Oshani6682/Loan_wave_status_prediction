@@ -97,7 +97,8 @@ function AppRouter() {
           <Route path="/uStatus" element={<PrivateRoute element={<UserStatus />}  allowedTypes={'Admin'}/>}/>
           <Route path="/my-loans" element={<PrivateRoute element={<MyLoans />}  allowedTypes={'Customer'}/>}/>
           <Route path="/apply-loans" element={<PrivateRoute element={<ApplyLoans />}  allowedTypes={'Customer'}/>}/>
-          <Route path="/user/:username" element={<PrivateRoute element={<UserDetails />}/>}/>
+          {/* <Route path="/user/:username" element={<PrivateRoute element={<UserDetails />}/>}/> */}
+          <Route path="/user/:username/:loanApplication" element={<PrivateRoute element={<UserDetails />}/>}/>
         </Routes>
       </div>
       <Footer/>
