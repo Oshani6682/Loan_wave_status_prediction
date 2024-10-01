@@ -5,7 +5,7 @@ import MessageBox from '../Components/MessageBox';
 function Alreadyhaveloan() {
     return (
       <div>
-        <MessageBox messageType="error" message="You Already Have a Loan" />
+        <MessageBox messageType="error" message="Sorry !! You already have a Loan or Applied for a Loan" />
       </div>
     );
   }

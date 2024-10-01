@@ -158,7 +158,7 @@ def predict(username):
             {"username": username, "LoanApplications.Loan_Status": "Pending"},
             {
                 "$set": {
-                    "LoanApplications.$.Loan_Status": "Approved" if result == 1 else "Rejected"
+                    "LoanApplications.$.Loan_Status": "Approved" if result == 1 else " Rejected"
                 }
             }
         )

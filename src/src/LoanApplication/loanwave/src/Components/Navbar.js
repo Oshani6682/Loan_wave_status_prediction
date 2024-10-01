@@ -1,6 +1,7 @@
 import React from 'react';
-import { Link, useNavigate  } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaSignOutAlt, FaUser, FaHome, FaInfoCircle } from 'react-icons/fa'; // FontAwesome icons
 
 // Function to get the value of a specific cookie by name
 function getCookie(name) {
@@ -19,17 +20,17 @@ function Navbar() {
   const userType = getCookie('userType');
   const navigate = useNavigate();
 
-    // Function to handle logout
-    const handleLogout = () => {
-      // Clear cookies (or perform any other logout logic)
-      document.cookie = "userType=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      navigate('/');
-    };
+  // Function to handle logout
+  const handleLogout = () => {
+    // Clear cookies (or perform any other logout logic)
+    document.cookie = "userType=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    navigate('/');
+  };
 
   return (
-    <nav style={{ backgroundColor: '#c94277', color: 'white'  }} className="navbar navbar-expand-lg" >
-      <Link className="navbar-brand" to="/"  style={{color: 'white'  }}>
-      &nbsp;Loanwave
+    <nav style={{ backgroundColor: '#b0276a', color: 'white' }} className="navbar navbar-expand-lg navbar-dark">
+      <Link className="navbar-brand" to="/" style={{ color: 'white', fontWeight: 'bold', fontSize: '24px' }}>
+        Loanwave
       </Link>
       <button
         className="navbar-toggler"
@@ -46,16 +47,17 @@ function Navbar() {
         <ul className="navbar-nav">
           {/* Visible to all users */}
           <li className="nav-item">
-            <Link className="nav-link" to="/"  style={{color: 'white'  }}>
-              Home
+            <Link className="nav-link" to="/" style={{ color: 'white' }}>
+              <FaHome className="mr-1" /> Home
             </Link>
           </li>
+
           {/* Conditional links based on userType */}
           {userType === 'Admin' && (
             <>
               <li className="nav-item">
-                <Link className="nav-link" to="/uStatus"  style={{color: 'white'  }}>
-                  Loan Status
+                <Link className="nav-link" to="/uStatus" style={{ color: 'white' }}>
+                  <FaUser className="mr-1" /> Loan Request Status
                 </Link>
               </li>
             </>
@@ -64,12 +66,12 @@ function Navbar() {
           {userType === 'Customer' && (
             <>
               <li className="nav-item">
-                <Link className="nav-link" to="/apply-loans"  style={{color: 'white'  }}>
+                <Link className="nav-link" to="/apply-loans" style={{ color: 'white' }}>
                   Apply Loans
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/my-loans">
+                <Link className="nav-link" to="/my-loans" style={{ color: 'white' }}>
                   My Loans
                 </Link>
               </li>
@@ -78,8 +80,8 @@ function Navbar() {
 
           {/* Additional links visible to all */}
           <li className="nav-item">
-            <Link className="nav-link" to="/about"  style={{color: 'white'  }}>
-              About Us
+            <Link className="nav-link" to="/about" style={{ color: 'white' }}>
+              <FaInfoCircle className="mr-1" /> About Us
             </Link>
           </li>
         </ul>
@@ -87,14 +89,14 @@ function Navbar() {
           {/* Login/Logout link */}
           {userType ? (
             <li className="nav-item">
-              <button className="btn btn-link nav-link" onClick={handleLogout}>
-                Logout
+              <button className="btn btn-outline-light nav-link" onClick={handleLogout}>
+                <FaSignOutAlt className="mr-1" /> Logout
               </button>
             </li>
           ) : (
             <li className="nav-item">
-              <Link className="nav-link" to="/login"  style={{color: 'white'  }}>
-                Login
+              <Link className="nav-link" to="/login" style={{ color: 'white' }}>
+                <FaUser className="mr-1" /> Login
               </Link>
             </li>
           )}
