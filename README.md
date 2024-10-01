@@ -1,20 +1,32 @@
-                             LOANWAVE -Loan Status Prediction using Machine Learning
+                                    LOANWAVE -Loan Status Prediction using Machine Learning
                              
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+# Getting Started  React App
 ## Available Scripts
 
 In the project directory, you can run:
+@echo off
 
-### `npm start`
+:: Navigate to the first folder and run the script
+cd /D D:\ICBT\src\AccountService
+start py app.py
+
+:: Navigate to the second folder and run the script on a given port
+cd /D D:\ICBT\src\LoanService
+start py app.py --port=5001
+
+:: Navigate to the third folder and start npm
+cd /D D:\ICBT\src\LoanApplication\loanwave
+start npm start
+
+:: Pause to keep the terminal open
+pause
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+*Views*
 1.Loan Prediction Application Page
 ![Loan Application Page](image.png)
 
